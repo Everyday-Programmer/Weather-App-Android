@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.everydayprogrammer.weatherapp">
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT"/>
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" tools:node="remove"/>
+    <uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY" />
+
+    <application
+        android:name="com.everydayprogrammer.weatherapp.CustomFontApp"
+        android:allowBackup="true"
+        android:fullBackupContent="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Weather App"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name="com.everydayprogrammer.weatherapp.activities.LoadingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.everydayprogrammer.weatherapp.activities.SplashActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.everydayprogrammer.weatherapp.activities.FirstActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.everydayprogrammer.weatherapp.activities.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.everydayprogrammer.weatherapp.activities.SettingsActivity"
+            android:theme="@style/AppTheme" />
+
+        <receiver android:name="com.everydayprogrammer.weatherapp.widgets.ExtensiveWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/extensive_widget" />
+        </receiver>
+        <receiver android:name="com.everydayprogrammer.weatherapp.widgets.TimeWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/time_widget" />
+        </receiver>
+        <receiver android:name="com.everydayprogrammer.weatherapp.widgets.SimpleWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/simple_widget" />
+        </receiver>
+
+        <service
+            android:name="com.everydayprogrammer.weatherapp.widgets.DashClockWeatherExtension"
+            android:icon="@drawable/ic_cloud_white_24dp"
+            android:label="@string/app_name"
+            android:permission="com.google.android.apps.dashclock.permission.READ_EXTENSION_DATA">
+            <intent-filter>
+                <action android:name="com.google.android.apps.dashclock.Extension" />
+            </intent-filter>
+
+            <meta-data
+                android:name="protocolVersion"
+                android:value="2" />
+            <meta-data
+                android:name="worldReadable"
+                android:value="true" />
+            <meta-data
+                android:name="settingsActivity"
+                android:value=".ExampleSettingsActivity" />
+        </service>
+
+        <receiver android:name="com.everydayprogrammer.weatherapp.AlarmReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.everydayprogrammer.weatherapp.activities.GraphActivity"
+            android:label="@string/action_graphs"
+            android:parentActivityName="com.everydayprogrammer.weatherapp.activities.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <provider
+            android:name="com.everydayprogrammer.weatherapp.utils.StubContentProvider"
+            android:authorities="com.everydayprogrammer.weatherapp.authority"
+            android:exported="true"/>
+
+    </application>
+
+</manifest>
