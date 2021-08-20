@@ -18,7 +18,7 @@ import com.everydayprogrammer.weatherapp.activities.MainActivity;
 import com.everydayprogrammer.weatherapp.utils.UnitConvertor;
 
 public class DashClockWeatherExtension extends DashClockExtension {
-    private static final Uri URI_BASE = Uri.parse("content://com.alloy.weather.authority");
+    private static final Uri URI_BASE = Uri.parse("content://com.everydayprogrammer.weatherapp.authority");
     private static final String UPDATE_URI_PATH_SEGMENT = "dashclock/update";
 
     @Override
